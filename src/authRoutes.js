@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { registerUser, authenticateUser } = require('./auth');
+const { registerUser, authenticateUser,authenticateToken } = require('./auth');
+const { executeSelectQuery } = require('./queries');
+const { query } = require('./db');
+
 
 // Register endpoint
 router.post('/register', async (req, res) => {
@@ -25,3 +28,15 @@ router.post('/login', async (req, res) => {
 });
 
 module.exports = router;
+
+
+router.post('/query', authenticateToken, async (req, res) => {
+  try {
+    const query = req.body.query;
+    const result = await executeSelectQuery(query);
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err.message);
+  }
+});

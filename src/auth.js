@@ -14,7 +14,8 @@ async function registerUser(username, password) {
     return result.insertId;
   } catch (err) {
     console.log(err);
-    throw new Error('User registration failed');
+    // throw new Error('User registration failed');
+    throw err;
   }
 }
 
@@ -30,14 +31,28 @@ async function authenticateUser(username, password) {
     if (!isMatch) throw new Error('Invalid credentials');
 
     // Generate JWT
-    console.log(SECRET_KEY);
-
     const token = jwt.sign({ id: user.id }, SECRET_KEY, { expiresIn: '1h' });
     return token;
   } catch (err) {
     console.log(err);
-    throw new Error('Authentication failed');
+    // throw new Error('Authentication failed');
+    throw err;
   }
 }
 
-module.exports = { registerUser, authenticateUser };
+function authenticateToken(req, res, next) {
+  // const authHeader = req.headers['authorization'];
+  // const token = authHeader && authHeader.split(' ')[1];
+  token=req.body.token;
+  if (token == null) return res.sendStatus(401);   
+ // Unauthorized
+
+  jwt.verify(token, SECRET_KEY, (err, user) => {
+    if (err) return res.sendStatus(403); // Forbidden
+    req.user = user;   
+
+    next();
+  });
+}
+
+module.exports = { registerUser, authenticateUser, authenticateToken };
