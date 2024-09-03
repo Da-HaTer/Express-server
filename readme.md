@@ -1,7 +1,7 @@
 
 # Express.js Backend Server
 
-This project is an Express.js backend server designed to handle various API requests and manage data interactions with a database. Below is a brief description of the environment variables required to configure the server.
+This project is an Express.js backend server designed to handle various API requests and manage data interactions with a database. 
 
 
 
