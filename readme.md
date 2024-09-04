@@ -7,18 +7,13 @@ This project is an Express.js backend server designed to handle various API requ
 
 
 ### Getting Started
-1. #### Clone the repository:
-*(skip this step if you already have the repository in your folder)*
-```bash
-git clone https://github.com/Da-HaTer/Express-server.git
-cd Express-server
-```
-2. #### Install dependencies:
+
+1. #### Install dependencies:
 ```bash
 npm install
 ```
 
-3. #### Set up the environment variables
+2. #### Set up the environment variables
 
 Create a ``.env`` file in the root directory of the project and add the necessary environment variables as shown above.
 
@@ -43,7 +38,7 @@ DB_NAME=
 SECRET_KEY=
 ```
 
-4. #### Start the server:
+3. #### Start the server:
 ```shell
 npm start
 ```
