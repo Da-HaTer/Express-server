@@ -8,6 +8,7 @@ This project is an Express.js backend server designed to handle various API requ
 
 ### Getting Started
 1. #### Clone the repository:
+*(skip this step if you already have the repository in your folder)*
 ```bash
 git clone https://github.com/Da-HaTer/Express-server.git
 cd Express-server
